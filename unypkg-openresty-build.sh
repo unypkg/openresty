@@ -19,5 +19,7 @@ latest_ver="$(echo "$latest_head" | grep -o "v[0-9.]*" | sed "s|v||")"
 check_for_repo_and_create
 git_clone_source_repo
 
+cd openresty || exit
+
 version_details
 archiving_source
