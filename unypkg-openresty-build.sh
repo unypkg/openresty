@@ -52,6 +52,7 @@ mv openrestysource/openresty-* openresty
 cd openresty/bundle/ngx_stream_lua-* || exit
 wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
 git apply config.patch
+cd /uny/sources || exit
 
 version_details
 archiving_source
