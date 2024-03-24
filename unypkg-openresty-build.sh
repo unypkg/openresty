@@ -49,6 +49,10 @@ cd /uny/sources || exit
 mv openresty openrestysource
 mv openrestysource/openresty-* openresty
 
+cd openresty/bundle/ngx_stream_lua-* || exit
+wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
+git apply config.patch
+
 version_details
 archiving_source
 
@@ -70,10 +74,11 @@ get_include_paths_temp
 
 unset LD_RUN_PATH
 
+#    --with-cc-opt="-I/uny/pkg/pcre2/10.43/include/" \
+#    --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib/" \
+
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --with-pcre-jit \
-    --with-cc-opt="-I/uny/pkg/pcre2/10.43/include/" \
-    --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib/" \
     --with-mail \
     --with-ipv6 \
     -j"$(nproc)"
