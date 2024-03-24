@@ -68,7 +68,7 @@ get_include_paths_temp
 ####################################################
 ### Start of individual build script
 
-unset LD_RUN_PATH
+#unset LD_RUN_PATH
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --with-pcre-jit \
