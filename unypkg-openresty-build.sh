@@ -5,7 +5,18 @@
 ### Setup Build System and GitHub
 
 wget -qO- uny.nu/pkg | bash -s buildsys
-source "$UNY"/uny/build/github_conf
+mkdir /uny/tmp
+
+### Installing build dependencies
+unyp install pcre2
+
+### Getting Variables from files
+UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
+export UNY_AUTO_PAT
+GH_TOKEN="$(cat GH_TOKEN)"
+export GH_TOKEN
+
+source /uny/uny/build/github_conf
 
 ######################################################################################################################
 ### Timestamp & Download
