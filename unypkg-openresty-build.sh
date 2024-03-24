@@ -79,6 +79,7 @@ unset LD_RUN_PATH
 #    --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib/" \
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
+    --with-pcre=/uny/pkg/pcre2/*/ \
     --with-pcre-jit \
     --with-mail \
     --with-ipv6 \
