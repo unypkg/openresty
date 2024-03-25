@@ -46,15 +46,15 @@ git_clone_source_repo
 
 cd openresty || exit
 make
+cd /uny/sources/openresty || exit
+wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
+git apply pcre.patch
+
 cd /uny/sources || exit
 mv openresty openrestysource
 mv openrestysource/openresty-* openresty
 
-cd openresty || exit
-wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
-git apply pcre.patch
-
-cd bundle/ngx_stream_lua-* || exit
+cd openresty/bundle/ngx_stream_lua-* || exit
 wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
 git apply config.patch
 
