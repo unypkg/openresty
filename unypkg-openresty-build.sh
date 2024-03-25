@@ -50,9 +50,14 @@ cd /uny/sources || exit
 mv openresty openrestysource
 mv openrestysource/openresty-* openresty
 
-cd openresty/bundle/ngx_stream_lua-* || exit
+cd openresty || exit
+wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
+git apply pcre.patch
+
+cd bundle/ngx_stream_lua-* || exit
 wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
 git apply config.patch
+
 cd /uny/sources || exit
 
 version_details
@@ -81,11 +86,22 @@ unset LD_RUN_PATH
 #    --with-pcre=/uny/pkg/pcre2/*/ \
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
-    --with-pcre \
-    --with-pcre-jit \
-    --with-mail \
     --with-ipv6 \
-    -j"$(nproc)"
+    -j"$(nproc)" \
+    --with-file-aio \
+    --with-http_dav_module \
+    --with-http_gzip_static_module \
+    --with-http_realip_module \
+    --with-http_ssl_module \
+    --with-http_stub_status_module \
+    --with-mail \
+    --with-mail_ssl_module \
+    --with-luajit \
+    --with-pcre-jit \
+    --with-http_v2_module \
+    --with-stream \
+    --with-stream_ssl_module \
+    --with-http_iconv_module
 
 make -j"$(nproc)"
 
