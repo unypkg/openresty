@@ -67,6 +67,7 @@ archiving_source
 # unyc - run commands in uny's chroot environment
 # shellcheck disable=SC2154
 unyc <<"UNYEOF"
+set -vx
 source /uny/build/functions
 pkgname="openresty"
 
@@ -79,13 +80,7 @@ get_include_paths_temp
 
 unset LD_RUN_PATH
 
-#    --with-cc-opt="-I/uny/pkg/pcre2/10.43/include/" \
-#    --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib/" \
-#    --with-pcre=/uny/pkg/pcre2/*/ \
-
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
-    --with-ipv6 \
-    --with-compat \
     --with-cc-opt="-I/uny/pkg/pcre2/10.43/include" \
     --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib" \
     -j"$(nproc)" \
