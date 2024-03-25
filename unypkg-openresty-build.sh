@@ -126,7 +126,7 @@ for pkg in /uny/sources/vdet-*-new; do
     source_archive_orig="$(echo /uny/sources/"$pkg"-"$pkgv".tar.*)"
     source_archive_new="$(echo "$source_archive_orig" | sed -r -e "s|^.*/||" -e "s|(\.tar.*$)|-source\1|")"
     cp -a "$source_archive_orig" "$source_archive_new"
-    cp -a /var/uny/build/logs/"$pkg"-*.log "$pkg"-build.log
+    cp -a /uny/uny/build/logs/"$pkg"-*.log "$pkg"-build.log
     XZ_OPT="-9 --threads=0" tar -cJpf unypkg-"$pkg".tar.xz "$pkg"
 
     gh -R unypkg/"$pkg" release create "$pkgv"-"$uny_build_date_now" --generate-notes \
