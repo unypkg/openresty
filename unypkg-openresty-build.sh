@@ -45,12 +45,9 @@ check_for_repo_and_create
 git_clone_source_repo
 
 cd openresty || exit
-make
-cd /uny/sources/openresty || exit
 wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
 git apply pcre.patch
-cat util/configure | grep "pcre2"
-cat util/configure
+make
 
 cd /uny/sources || exit
 mv openresty openrestysource
@@ -59,7 +56,6 @@ mv openrestysource/openresty-* openresty
 cd openresty/bundle/ngx_stream_lua-* || exit
 wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
 git apply config.patch
-
 cd /uny/sources || exit
 
 version_details
