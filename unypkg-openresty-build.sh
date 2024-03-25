@@ -81,6 +81,7 @@ unset LD_RUN_PATH
 #    --with-pcre=/uny/pkg/pcre2/*/ \
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
+    --with-pcre \
     --with-pcre-jit \
     --with-mail \
     --with-ipv6 \
