@@ -11,6 +11,7 @@ mkdir /uny/tmp
 
 ### Installing build dependencies
 unyp install pcre2
+unyp install openssl
 
 ### Getting Variables from files
 UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
