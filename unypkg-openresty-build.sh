@@ -49,6 +49,8 @@ make
 cd /uny/sources/openresty || exit
 wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
 git apply pcre.patch
+cat util/configure | grep "pcre2"
+cat util/configure
 
 cd /uny/sources || exit
 mv openresty openrestysource
