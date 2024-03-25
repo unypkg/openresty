@@ -87,6 +87,8 @@ unset LD_RUN_PATH
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --with-ipv6 \
+    --with-cc-opt="-I/uny/pkg/pcre2/10.43/include/" \
+    --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib/" \
     -j"$(nproc)" \
     --with-file-aio \
     --with-http_dav_module \
