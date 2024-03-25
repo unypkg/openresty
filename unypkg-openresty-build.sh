@@ -113,7 +113,7 @@ make install
 
 add_to_paths_files
 dependencies_file_and_unset_vars
-verbose_off_timing_end
+cleanup_verbose_off_timing_end
 UNYEOF
 
 ######################################################################################################################
