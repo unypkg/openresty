@@ -13,6 +13,7 @@ mkdir /uny/tmp
 unyp install pcre2
 unyp install openssl
 unyp install dos2unix
+unyp install mercurial
 
 ### Getting Variables from files
 UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
