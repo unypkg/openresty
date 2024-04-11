@@ -6,6 +6,8 @@ set -vx
 ######################################################################################################################
 ### Setup Build System and GitHub
 
+apt install -y mercurial
+
 wget -qO- uny.nu/pkg | bash -s buildsys
 mkdir /uny/tmp
 
@@ -13,7 +15,6 @@ mkdir /uny/tmp
 unyp install pcre2
 unyp install openssl
 unyp install dos2unix
-unyp install mercurial
 
 ### Getting Variables from files
 UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
