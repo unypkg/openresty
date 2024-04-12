@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2034,SC1091
+# shellcheck disable=SC2034,SC1091,SC2154
 
 set -vx
 
@@ -88,9 +88,11 @@ get_include_paths_temp
 
 unset LD_RUN_PATH
 
+pcre2_path=(/uny/pkg/pcre2/*/)
+
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
-    --with-cc-opt="-I/uny/pkg/pcre2/10.43/include" \
-    --with-ld-opt="-L/uny/pkg/pcre2/10.43/lib" \
+    --with-cc-opt="-I${pcre2_path[0]}include" \
+    --with-ld-opt="-L${pcre2_path[0]}lib" \
     -j"$(nproc)" \
     --with-file-aio \
     --with-http_dav_module \
@@ -116,6 +118,16 @@ make install
 
 add_to_paths_files
 dependencies_file_and_unset_vars
+
+# nginx dependencies
+echo "Shared objects required by: nginx"
+ldd /uny/pkg/"$pkgname"/"$pkgver"/nginx/sbin/nginx
+ldd /uny/pkg/"$pkgname"/"$pkgver"/nginx/sbin/nginx | grep -v "$pkgname/$pkgver" | sed "s|^.*ld-linux.*||" | grep -o "uny/pkg\(.*\)" | sed -e "s+uny/pkg/+unypkg/+" | grep -Eo "(unypkg/[a-z0-9]+/[0-9.]*)" |
+    sort -u >>/uny/pkg/"$pkgname"/"$pkgver"/rdep
+sort -u /uny/pkg/"$pkgname"/"$pkgver"/rdep -o /uny/pkg/"$pkgname"/"$pkgver"/rdep
+echo "Packages required by unypkg/$pkgname/$pkgver:"
+cat /uny/pkg/"$pkgname"/"$pkgver"/rdep
+
 cleanup_verbose_off_timing_end
 UNYEOF
 
