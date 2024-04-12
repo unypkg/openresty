@@ -58,6 +58,7 @@ make
 
 cd /uny/sources || exit
 mv openresty openrestysource
+rm openrestysource/openresty-*.tar.*
 mv openrestysource/openresty-* openresty
 
 cd openresty/bundle/ngx_stream_lua-* || exit
