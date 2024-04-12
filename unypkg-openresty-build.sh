@@ -93,6 +93,7 @@ get_include_paths_temp
 #    --with-ld-opt="-L${pcre2_path[0]}lib" \
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
+    --with-ld-opt="$LDFLAGS" \
     --with-openssl-opt=enable-ec_nistp_64_gcc_128 \
     --with-openssl-opt=no-weak-ssl-ciphers \
     --with-pcre-jit \
