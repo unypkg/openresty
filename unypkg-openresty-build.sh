@@ -6,7 +6,7 @@ set -vx
 ######################################################################################################################
 ### Setup Build System and GitHub
 
-apt install -y mercurial
+apt install -y perl dos2unix mercurial
 
 wget -qO- uny.nu/pkg | bash -s buildsys
 mkdir /uny/tmp
