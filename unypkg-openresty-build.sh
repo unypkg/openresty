@@ -12,9 +12,7 @@ wget -qO- uny.nu/pkg | bash -s buildsys
 mkdir /uny/tmp
 
 ### Installing build dependencies
-unyp install pcre2
-unyp install openssl
-unyp install dos2unix
+unyp install pcre2 openssl dos2unix
 
 ### Getting Variables from files
 UNY_AUTO_PAT="$(cat UNY_AUTO_PAT)"
