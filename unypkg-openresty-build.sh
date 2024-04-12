@@ -95,7 +95,6 @@ get_include_paths_temp
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --with-openssl-opt=enable-ec_nistp_64_gcc_128 \
     --with-openssl-opt=no-weak-ssl-ciphers \
-    --with-zlib \
     --with-pcre-jit \
     --with-luajit \
     --with-file-aio \
