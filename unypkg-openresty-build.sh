@@ -86,14 +86,19 @@ get_include_paths_temp
 ####################################################
 ### Start of individual build script
 
-unset LD_RUN_PATH
+#unset LD_RUN_PATH
 
-pcre2_path=(/uny/pkg/pcre2/*/)
+#pcre2_path=(/uny/pkg/pcre2/*/)
+#    --with-cc-opt="-I${pcre2_path[0]}include" \
+#    --with-ld-opt="-L${pcre2_path[0]}lib" \
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
-    --with-cc-opt="-I${pcre2_path[0]}include" \
-    --with-ld-opt="-L${pcre2_path[0]}lib" \
-    -j"$(nproc)" \
+    --with-openssl \
+    --with-openssl-opt=enable-ec_nistp_64_gcc_128 \
+    --with-openssl-opt=no-weak-ssl-ciphers \
+    --with-zlib \
+    --with-pcre-jit \
+    --with-luajit \
     --with-file-aio \
     --with-http_dav_module \
     --with-http_gzip_static_module \
@@ -102,12 +107,11 @@ pcre2_path=(/uny/pkg/pcre2/*/)
     --with-http_stub_status_module \
     --with-mail \
     --with-mail_ssl_module \
-    --with-luajit \
-    --with-pcre-jit \
     --with-http_v2_module \
     --with-stream \
     --with-stream_ssl_module \
-    --with-http_iconv_module
+    --with-http_iconv_module \
+    -j"$(nproc)"
 
 make -j"$(nproc)"
 
