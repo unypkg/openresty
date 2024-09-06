@@ -115,6 +115,28 @@ make -j"$(nproc)"
 
 make install
 
+mkdir -pv /uny/pkg/"$pkgname"/"$pkgver"/systemd
+tee /uny/pkg/"$pkgname"/"$pkgver"/systemd/openresty.service <<EOF
+[Unit]
+Description=The OpenResty Application Platform
+After=syslog.target network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/uny/pkg/$pkgname/$pkgver/nginx/logs/nginx.pid
+ExecStartPre=/uny/pkg/$pkgname/$pkgver/nginx/sbin/nginx -t
+ExecStart=/uny/pkg/$pkgname/$pkgver/nginx/sbin/nginx
+ExecStartPost=/usr/bin/env bash -c "sleep 1"
+ExecReload=/usr/bin/env bash -c "kill -s HUP \$MAINPID"
+ExecStop=/usr/bin/env bash -c "kill -s QUIT \$MAINPID"
+RuntimeDirectory=openresty
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 ####################################################
 ### End of individual build script
 
