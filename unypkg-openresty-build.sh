@@ -116,6 +116,9 @@ make -j"$(nproc)"
 
 make install
 
+mkdir -pv /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf
+cp -a /etc/uny/openresty/* /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf/
+
 mkdir -pv /uny/pkg/"$pkgname"/"$pkgver"/systemd
 tee /uny/pkg/"$pkgname"/"$pkgver"/systemd/openresty.service <<EOF
 [Unit]
