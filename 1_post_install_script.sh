@@ -10,6 +10,9 @@ cd "$unypkg_root_dir" || exit
 #############################################################################################
 ### Start of script
 
+mkdir -pv /etc/uny/openresty
+cp -a nginx/conf/* /etc/uny/openresty/
+
 cp -a systemd/openresty.service /etc/systemd/system/uny-openresty.service
 #sed "s|.*Alias=.*||g" -i /etc/systemd/system/uny-ols.service
 sed -e '/\[Install\]/a\' -e 'Alias=openresty.service or.service' -i /etc/systemd/system/uny-openresty.service

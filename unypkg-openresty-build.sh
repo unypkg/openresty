@@ -93,7 +93,7 @@ get_include_paths_temp
 
 ./configure --prefix=/uny/pkg/"$pkgname"/"$pkgver" \
     --with-ld-opt="$LDFLAGS" \
-    --conf-path=/etc/uny/or-nginx.conf \
+    --conf-path=/etc/uny/openresty/nginx.conf \
     --with-openssl-opt=enable-ec_nistp_64_gcc_128 \
     --with-openssl-opt=no-weak-ssl-ciphers \
     --with-pcre-jit \
