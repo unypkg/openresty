@@ -15,6 +15,12 @@ if [[ ! -s /etc/uny/openresty/nginx.conf ]]; then
     cp -a nginx/conf/* /etc/uny/openresty/
 fi
 
+# Adjustment to make opm work
+if [[ -s /bin/perl && ! -L /bin/perl ]]; then
+    mv -v /bin/perl /bin/perl_unybak
+    unyp si perl
+fi
+
 OR_SERVICE_DEST="/etc/systemd/system/uny-openresty.service"
 cp -a systemd/openresty.service "$OR_SERVICE_DEST"
 #sed "s|.*Alias=.*||g" -i /etc/systemd/system/uny-ols.service
