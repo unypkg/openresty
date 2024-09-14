@@ -11,11 +11,14 @@ cd "$unypkg_root_dir" || exit
 ### Start of script
 
 mkdir -pv /etc/uny/openresty
-cp -a nginx/conf/* /etc/uny/openresty/
+if [[ ! -s /etc/uny/openresty/nginx.conf ]]; then
+    cp -a nginx/conf/* /etc/uny/openresty/
+fi
 
-cp -a systemd/openresty.service /etc/systemd/system/uny-openresty.service
+OR_SERVICE_DEST="/etc/systemd/system/uny-openresty.service"
+cp -a systemd/openresty.service "$OR_SERVICE_DEST"
 #sed "s|.*Alias=.*||g" -i /etc/systemd/system/uny-ols.service
-sed -e '/\[Install\]/a\' -e 'Alias=openresty.service or.service' -i /etc/systemd/system/uny-openresty.service
+sed -e '/\[Install\]/a\' -e 'Alias=openresty.service or.service' -i "$OR_SERVICE_DEST"
 systemctl daemon-reload
 
 #############################################################################################
