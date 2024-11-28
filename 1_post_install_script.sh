@@ -10,10 +10,12 @@ cd "$unypkg_root_dir" || exit
 #############################################################################################
 ### Start of script
 
-mkdir -pv /etc/uny/openresty
+mkdir -pv /etc/uny/openresty/{sites-enabled,sites-available} /var/www /var/log/openresty
 if [[ ! -s /etc/uny/openresty/nginx.conf ]]; then
     cp -a nginx/conf/* /etc/uny/openresty/
 fi
+
+touch /var/log/openresty/error.log
 
 # Adjustment to make opm work
 if [[ -s /bin/perl && ! -L /bin/perl ]]; then
