@@ -10,7 +10,7 @@ cd "$unypkg_root_dir" || exit
 #############################################################################################
 ### Start of script
 
-mkdir -pv /etc/uny/openresty/{sites-enabled,sites-available} /var/www /var/log/openresty
+mkdir -pv /etc/uny/openresty/{sites-enabled,sites-available,conf.d} /var/www /var/log/openresty
 if [[ ! -s /etc/uny/openresty/nginx.conf ]]; then
     cp -a nginx/conf/* /etc/uny/openresty/
 fi
