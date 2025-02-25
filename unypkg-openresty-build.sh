@@ -51,8 +51,8 @@ echo "newer" >release-"$pkgname"
 git_clone_source_repo
 
 cd openresty || exit
-wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
-git apply pcre.patch
+#wget -O pcre.patch https://patch-diff.githubusercontent.com/raw/openresty/openresty/pull/956.patch
+#git apply pcre.patch
 make
 
 cd /uny/sources || exit
@@ -60,10 +60,10 @@ mv openresty openrestysource
 rm openrestysource/openresty-*.tar.*
 mv openrestysource/openresty-* openresty
 
-cd openresty/bundle/ngx_stream_lua-* || exit
-wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
-git apply config.patch
-cd /uny/sources || exit
+#cd openresty/bundle/ngx_stream_lua-* || exit
+#wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
+#git apply config.patch
+#cd /uny/sources || exit
 
 archiving_source
 
