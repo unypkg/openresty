@@ -60,6 +60,9 @@ mv openresty openrestysource
 rm openrestysource/openresty-*.tar.*
 mv openrestysource/openresty-* openresty
 
+lua_resty_http_latest_ver="$(git ls-remote --refs --tags --sort="v:refname" https://github.com/ledgetech/lua-resty-http refs/tags/v* | grep -E "v[0-9.]*$" | tail --lines=1 | cut -f2 | sed "s|refs/tags/||")"
+git clone --depth 1 --branch "$lua_resty_http_latest_ver" https://github.com/ledgetech/lua-resty-http
+
 #cd openresty/bundle/ngx_stream_lua-* || exit
 #wget -O config.patch https://patch-diff.githubusercontent.com/raw/openresty/stream-lua-nginx-module/pull/335.patch
 #git apply config.patch
@@ -118,6 +121,8 @@ make install
 
 mkdir -pv /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf
 cp -a /etc/uny/openresty/* /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf/
+
+cp -a /sources/lua-resty-http/lib/resty/* /uny/pkg/"$pkgname"/"$pkgver"/lualib/resty/
 
 mkdir -pv /uny/pkg/"$pkgname"/"$pkgver"/systemd
 tee /uny/pkg/"$pkgname"/"$pkgver"/systemd/openresty.service <<EOF
