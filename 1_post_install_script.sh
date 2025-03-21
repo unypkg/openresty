@@ -28,6 +28,8 @@ cp -a systemd/openresty.service "$OR_SERVICE_DEST"
 #sed "s|.*Alias=.*||g" -i /etc/systemd/system/uny-ols.service
 sed -e '/\[Install\]/a\' -e 'Alias=openresty.service or.service' -i "$OR_SERVICE_DEST"
 systemctl daemon-reload
+systemctl enable uny-ols
+systemctl start uny-ols
 
 #############################################################################################
 ### End of script
