@@ -134,7 +134,7 @@ Wants=network-online.target
 
 [Service]
 Type=forking
-PIDFile=/uny/pkg/$pkgname/$pkgver/nginx/logs/nginx.pid
+PIDFile=/run/openresty/openresty.pid
 ExecStartPre=/uny/pkg/$pkgname/$pkgver/nginx/sbin/nginx -t
 ExecStart=/uny/pkg/$pkgname/$pkgver/nginx/sbin/nginx
 ExecStartPost=/usr/bin/env bash -c "sleep 1"
