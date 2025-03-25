@@ -101,6 +101,7 @@ get_include_paths_temp
     --with-openssl-opt=no-weak-ssl-ciphers \
     --with-pcre-jit \
     --with-luajit \
+    --with-threads \
     --with-file-aio \
     --with-http_dav_module \
     --with-http_gzip_static_module \
