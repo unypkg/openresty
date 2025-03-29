@@ -122,6 +122,7 @@ make install
 
 mkdir -pv /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf
 cp -a /etc/uny/openresty/* /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf/
+sed "s|.*pid.*|pid /run/openresty/openresty.pid;|" -i /uny/pkg/"$pkgname"/"$pkgver"/nginx/conf/nginx.conf
 
 cp -a /sources/lua-resty-http/lib/resty/* /uny/pkg/"$pkgname"/"$pkgver"/lualib/resty/
 
@@ -134,13 +135,13 @@ Wants=network-online.target
 
 [Service]
 Type=forking
-PIDFile=/run/openresty/openresty.pid
 ExecStartPre=/uny/pkg/$pkgname/$pkgver/nginx/sbin/nginx -t
 ExecStart=/uny/pkg/$pkgname/$pkgver/nginx/sbin/nginx
 ExecStartPost=/usr/bin/env bash -c "sleep 1"
 ExecReload=/usr/bin/env bash -c "kill -s HUP \$MAINPID"
 ExecStop=/usr/bin/env bash -c "kill -s QUIT \$MAINPID"
 RuntimeDirectory=openresty
+PIDFile=/run/openresty/openresty.pid
 PrivateTmp=true
 
 [Install]
